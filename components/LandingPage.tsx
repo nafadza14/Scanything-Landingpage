@@ -45,21 +45,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="relative h-[650px] lg:h-[900px] flex items-center justify-center">
-               {/* Main Scanner Mockup - Wider and Clean */}
+               {/* Main Scanner Mockup */}
                <div className="absolute left-[-2%] lg:left-[-5%] top-[5%] w-[350px] lg:w-[420px] aspect-[10/19] bg-black rounded-[5rem] shadow-floating overflow-hidden z-20 animate-float">
-                  {/* Dynamic Island Notch */}
                   <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-full z-50 flex items-center justify-end px-3 border border-white/5">
                     <div className="w-2 h-2 rounded-full bg-blue-500/20 shadow-[0_0_4px_rgba(59,130,246,0.5)]"></div>
                   </div>
 
-                  {/* Camera Feed Background */}
                   <img 
                     src="https://matahari.com/cdn/shop/files/84341655_5.jpg?v=1742059226&width=720" 
                     className="absolute inset-0 w-full h-full object-cover brightness-90" 
                     alt="Scanning Product" 
                   />
                   
-                  {/* Interface Overlay */}
                   <div className="absolute inset-0 flex flex-col z-10 pointer-events-none">
                      <div className="flex-1 flex items-center justify-center px-10 relative">
                         <div className="relative w-full aspect-square max-w-[280px]">
@@ -67,8 +64,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                            <div className="absolute top-0 right-0 w-12 h-12 border-t-[3.5px] border-r-[3.5px] border-white rounded-tr-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
                            <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3.5px] border-l-[3.5px] border-white rounded-bl-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
                            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3.5px] border-r-[3.5px] border-white rounded-br-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
-                           
-                           {/* Laser Line */}
                            <div className="absolute left-0 right-0 h-[3px] bg-white shadow-[0_0_20px_4px_rgba(255,255,255,0.8)] animate-scan-laser-full z-20"></div>
                         </div>
                      </div>
@@ -89,14 +84,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   </div>
                </div>
 
-               {/* Secondary Supporting Mockup - Updated image to requested link */}
+               {/* Secondary Supporting Mockup - High Quality Rounded Full Screenshot */}
                <div className="absolute right-[-8%] lg:right-[-15%] top-[30%] w-[310px] lg:w-[360px] aspect-[10/19] bg-white rounded-[5rem] shadow-pink-glow overflow-hidden z-10 animate-float-delayed border-none">
                   <img 
                     src="https://i.pinimg.com/736x/9b/5a/55/9b5a557a7925d175f7f994c16a254191.jpg" 
                     className="w-full h-full object-cover" 
-                    alt="Body Knowledge Analysis" 
+                    alt="Body Knowledge Analysis Full Screen" 
                   />
-                  {/* Subtle Phone Header/Status Bar Overlay */}
+                  
+                  {/* BRAND HIGHLIGHT OVERLAY */}
+                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[85%] z-30 animate-in fade-in zoom-in duration-1000 delay-700">
+                     <div className="bg-primary/95 backdrop-blur-md px-5 py-4 rounded-3xl shadow-xl border border-white/30 text-center transform -rotate-2">
+                        <p className="text-white font-black text-[13px] leading-tight tracking-tight uppercase">
+                          We Know Your Body Better Than Anyone.
+                        </p>
+                     </div>
+                  </div>
+
+                  {/* Subtle Phone Header */}
                   <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-6 bg-black/10 backdrop-blur-md rounded-full z-20 border border-white/10"></div>
                </div>
             </div>
@@ -104,7 +109,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* SECTION 2: HOW IT WORKS */}
+      {/* REST OF THE SECTIONS */}
       <section id="how" className="py-32 bg-white">
         <div className="container mx-auto px-10 md:px-24">
           <div className="text-center max-w-3xl mx-auto mb-24">
@@ -138,7 +143,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* SECTION 3: CORE FUNCTIONS */}
+      {/* CORE FUNCTIONS */}
       <section className="py-32 bg-white">
         <div className="container mx-auto px-10 md:px-24">
           <div className="text-center max-w-4xl mx-auto mb-20">

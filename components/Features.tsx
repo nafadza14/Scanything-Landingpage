@@ -45,7 +45,7 @@ const Features: React.FC = () => {
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16 relative">
           
-          {/* Decorative Swirly Arrow (mimicking user's hand-drawn example) */}
+          {/* Decorative Swirly Arrow */}
           {activeStep === 1 && (
             <div className="absolute left-[-150px] top-[40%] hidden xl:block animate-in fade-in slide-in-from-right-10 duration-1000 z-50">
                <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary opacity-60">
@@ -61,13 +61,11 @@ const Features: React.FC = () => {
           {/* Left Side: Mockup UI */}
           <div className="w-full lg:w-[50%] flex justify-center">
             <div className="relative w-[380px] lg:w-[440px] aspect-[10/19] transition-all duration-700 bg-white rounded-[5rem] shadow-floating overflow-hidden">
-              {/* Floating Notch */}
               <div className="absolute top-7 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-full z-50 flex items-center justify-end px-4 border border-white/5">
                  <div className="w-2 h-2 rounded-full bg-blue-500/20 shadow-[0_0_4px_rgba(59,130,246,0.5)]"></div>
               </div>
               
               <div className="w-full h-full relative">
-                {/* Background Image */}
                 <img 
                   src={inclusions[activeStep].image} 
                   className={`w-full h-full object-cover object-top transition-all duration-700 ${inclusions[activeStep].isScanning ? 'brightness-90 opacity-95' : 'brightness-100'}`} 
@@ -108,10 +106,10 @@ const Features: React.FC = () => {
                 {/* Case 2: Analysis UI */}
                 {inclusions[activeStep].isAnalyzing && (
                   <div className="absolute inset-0 flex flex-col z-20">
-                    {/* Floating Requested Highlight Text */}
+                    {/* Floating Brand Highlight */}
                     <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[85%] animate-in fade-in zoom-in duration-1000 delay-500 z-50">
-                       <div className="bg-primary px-6 py-4 rounded-[2rem] shadow-pink-glow border border-white/30 text-center backdrop-blur-md">
-                          <p className="text-white font-black text-base tracking-tight leading-tight">
+                       <div className="bg-primary/95 px-6 py-4 rounded-[2rem] shadow-pink-glow border border-white/30 text-center backdrop-blur-md">
+                          <p className="text-white font-black text-base tracking-tight leading-tight uppercase">
                             We Know Your Body Better Than Anyone.
                           </p>
                        </div>
@@ -119,7 +117,7 @@ const Features: React.FC = () => {
                   </div>
                 )}
 
-                {/* Case 3 & 4: Default Overlay */}
+                {/* Case 3 & 4: Snippet UI */}
                 {!inclusions[activeStep].isScanning && !inclusions[activeStep].isAnalyzing && (
                   <div className="absolute inset-0 flex flex-col justify-end p-12 z-20 pointer-events-none">
                      <div className="bg-white/95 backdrop-blur-3xl p-8 rounded-[3.5rem] shadow-floating animate-in fade-in slide-in-from-bottom-5 duration-700">
@@ -162,7 +160,6 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* Carousel Dots */}
         <div className="flex justify-center gap-3 mt-16">
           {inclusions.map((_, i) => (
             <button 
