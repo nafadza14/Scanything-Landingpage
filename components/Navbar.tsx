@@ -61,10 +61,15 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigateHome, currentView }) => {
           <a href="#features" onClick={(e) => handleNavClick(e, 'features')} className="hover:text-primary transition-all">Features</a>
         </div>
 
-        {/* Action Button: Removed Caps Lock */}
-        <button className="bg-primary hover:bg-pink-600 active:bg-pink-700 active:scale-95 active:shadow-[0_0_30px_rgba(233,30,99,0.8)] text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all shadow-pink-glow">
+        {/* Action Button: Linked to external scan app */}
+        <a 
+          href="https://product-scan-app.vercel.app/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-primary hover:bg-pink-600 active:bg-pink-700 active:scale-95 active:shadow-[0_0_30px_rgba(233,30,99,0.8)] text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all shadow-pink-glow"
+        >
           Scan now
-        </button>
+        </a>
       </div>
     </nav>
   );
