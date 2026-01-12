@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar.tsx';
+import Navbar, { ScanythingLogo } from './components/Navbar.tsx';
 import LandingPage from './components/LandingPage.tsx';
 import Terms from './components/Terms.tsx';
 import Privacy from './components/Privacy.tsx';
@@ -13,7 +12,6 @@ const App: React.FC = () => {
   const navigateTo = (newView: View, targetId?: string) => {
     setView(newView);
     if (newView === 'home' && targetId) {
-      // Small delay to allow the DOM to render the home page sections
       setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
@@ -37,39 +35,41 @@ const App: React.FC = () => {
       {view === 'terms' && <Terms />}
       {view === 'privacy' && <Privacy />}
 
-      {/* Footer */}
-      <footer className="py-20 bg-white border-t border-border-soft">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-           <div className="flex flex-col gap-4">
+      {/* Footer: Redesigned for Premium Branding */}
+      <footer className="py-24 bg-white border-t border-border-soft">
+        <div className="container mx-auto px-8 md:px-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+           <div className="flex flex-col gap-6">
                <div 
                  onClick={() => navigateTo('home')}
-                 className="flex items-center gap-3 cursor-pointer"
+                 className="flex items-center gap-4 cursor-pointer group"
                >
-                    <img src="https://i.pinimg.com/736x/dd/8a/1f/dd8a1fdf2a12eec6673e822315324c29.jpg" className="w-10 h-10 rounded-xl" alt="Scanything Logo" />
-                    <span className="text-2xl font-heading font-bold text-pure-black">Scanything</span>
+                    <ScanythingLogo className="w-14 h-14" />
+                    <span className="text-3xl font-heading font-black tracking-tighter text-black">
+                        Scanything
+                    </span>
                </div>
-               <p className="text-text-secondary max-w-xs">Scan. Understand. Live better with AI-powered health insights.</p>
+               <p className="text-text-secondary max-w-xs font-medium leading-relaxed">Scan. Understand. Live better with AI-powered health insights for food and skincare.</p>
            </div>
            
-           <div className="flex flex-wrap gap-x-12 gap-y-4 text-sm font-semibold text-text-primary uppercase tracking-widest">
+           <div className="flex flex-wrap gap-x-12 gap-y-6 text-base font-bold text-text-primary transition-all">
               <button 
                 onClick={() => navigateTo('privacy')}
-                className="hover:text-primary transition-colors outline-none"
+                className="hover:text-primary transition-all outline-none"
               >
                 Privacy
               </button>
               <button 
                 onClick={() => navigateTo('terms')}
-                className="hover:text-primary transition-colors outline-none"
+                className="hover:text-primary transition-all outline-none"
               >
                 Terms
               </button>
-              <a href="#" className="hover:text-primary transition-colors">FAQ</a>
-              <a href="#" className="hover:text-primary transition-colors">Contact</a>
+              <a href="#" className="hover:text-primary transition-all">FAQ</a>
+              <a href="#" className="hover:text-primary transition-all">Contact</a>
            </div>
 
-           <div className="text-sm text-text-secondary font-medium">
-             © 2026 Scanything Health.
+           <div className="text-sm font-bold text-gray-400">
+             © 2026 Scanything Health. All rights reserved.
            </div>
         </div>
       </footer>

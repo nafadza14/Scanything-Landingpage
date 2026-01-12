@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult } from "../types";
 
-export class GeminiService {
+export class ScanythingAiService {
   private ai: GoogleGenAI;
 
   constructor() {
@@ -22,7 +22,7 @@ export class GeminiService {
               },
             },
             {
-              text: `Analyze the ingredient list from this product image. 
+              text: `Analyze the ingredient list from this product image using Scanything AI logic. 
               Identify individual ingredients and explain their safety, risks, and health implications.
               Determine if it's a food product or skincare based on the labels.
               Return the data in the following JSON format:

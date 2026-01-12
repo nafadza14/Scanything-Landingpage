@@ -33,13 +33,13 @@ const Privacy: React.FC = () => {
             <h2 className="text-2xl font-bold text-pure-black mb-4">2. Camera & Image Processing</h2>
             <p>Scanything requires access to your device's camera. <strong>We do not take photos without your explicit action.</strong></p>
             <p className="mt-4">
-              When you "Scan" a label, the image is sent to our secure servers and then to our AI partner (Google Gemini) for analysis. Images are used solely for ingredient extraction and are not shared with third-party advertisers.
+              When you "Scan" a label, the image is sent to our secure servers and then to our Scanything AI engine for analysis. Images are used solely for ingredient extraction and are not shared with third-party advertisers.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-pure-black mb-4">3. Use of AI (Artificial Intelligence)</h2>
-            <p>We use Gemini AI to interpret complex ingredient lists. The data sent to the AI is stripped of personal identifiers where possible. However, if a product label contains personal info (like a prescription label), that info may be processed. We advise users to scan <strong>only</strong> the ingredient list section of product packaging.</p>
+            <p>We use Scanything AI to interpret complex ingredient lists. The data processed by our engine is stripped of personal identifiers where possible. However, if a product label contains personal info (like a prescription label), that info may be processed. We advise users to scan <strong>only</strong> the ingredient list section of product packaging.</p>
           </section>
 
           <section>
@@ -57,7 +57,7 @@ const Privacy: React.FC = () => {
             <p><strong>We do not sell your personal or health data to brokers or insurance companies.</strong> We only share data with:</p>
             <ul className="list-disc pl-6 space-y-2 mt-4">
               <li><strong>Cloud Service Providers:</strong> For hosting our database and infrastructure (e.g., Google Cloud, Vercel).</li>
-              <li><strong>AI Service Providers:</strong> Specifically for processing the content of scanned labels.</li>
+              <li><strong>AI Infrastructure Partners:</strong> Specifically for processing the content of scanned labels via our private AI nodes.</li>
               <li><strong>Legal Authorities:</strong> Only when strictly required by law or a valid court order.</li>
             </ul>
           </section>

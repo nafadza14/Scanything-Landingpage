@@ -1,168 +1,160 @@
-
 import React, { useState } from 'react';
 
 const Features: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
-  const features = [
+  const inclusions = [
     {
-      title: "Analyze Labels With Just a Picture",
-      description: "Snap a photo of any ingredient label. Our AI instantly parses complex chemical names and breaks down their safety, health risks, and nutritional impact.",
+      title: "Identify Ingredients With Just a Photo",
+      description: "Snap a photo of any label, and Scanything's depth-AI parses every chemical and additive. Our engine then analyzes and breaks down risks to determine safety levels for your profile.",
       image: "https://i.pinimg.com/736x/a5/d7/38/a5d7389bf2128a090ad1fa0ca398e2c0.jpg",
-      type: "built-ui",
-      mockupData: {
-        title: "Chocolate Cookies",
-        calories: "101",
-        prot: "1g",
-        carbs: "14g",
-        score: "4.2",
-        scoreColor: "text-primary",
-        scoreBg: "bg-primary"
-      }
+      isScanning: true
     },
     {
-      title: "Search Our Database of over 500k Products",
-      description: "Quickly find and evaluate products from our extensive global database. Search by name, brand, or scan barcodes for instant transparency.",
-      image: "https://i.pinimg.com/736x/9e/70/22/9e7022233ae6caf110ef58ed4180fd68.jpg",
-      type: "screenshot"
+      title: "Search Our Database of Over 500k Products",
+      description: "Quickly find and log ingredients from our extensive database. Search by name, brand, or scan barcodes for instant transparency on food and skincare.",
+      image: "https://i.pinimg.com/736x/65/99/ec/6599eca08b603b8d689bbfd4f59d57ca.jpg",
+      isScanning: false
     },
     {
-      title: "Personalized Insights and AI Alerts",
-      description: "Set your health profile—from pregnancy to diabetes—and get custom AI suggestions that flag specific ingredients based on your unique needs.",
-      image: "https://i.pinimg.com/736x/7e/51/d7/7e51d75589065a8fc4ea63c92d785624.jpg",
-      type: "screenshot"
-    },
-    {
-      title: "Track Your Ingredients and Health Progress",
-      description: "Keep a history of what you consume and apply to your skin. Scanything helps you stay informed and active, integrating your health routine effortlessly.",
+      title: "Complete Safety Tracking and AI Suggestions",
+      description: "Monitor your exposure to specific toxins, allergens, and inflammatory triggers. Get personalized AI suggestions to stay on track and optimize your health routine.",
       image: "https://i.pinimg.com/736x/2b/87/d8/2b87d86f60e7631a6f494f6e45b0365e.jpg",
-      type: "screenshot"
+      isScanning: false
+    },
+    {
+      title: "Keep Track of Reactions and Improvements",
+      description: "Log your skin reactions or digestive symptoms effortlessly. Scanything helps you correlate ingredient exposure with your physical well-being over time.",
+      image: "https://i.pinimg.com/736x/7e/51/d7/7e51d75589065a8fc4ea63c92d785624.jpg",
+      isScanning: false
     }
   ];
 
-  const activeFeature = features[activeIndex];
-
   return (
-    <section id="features" className="py-24 bg-[#FCFDF9] overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold text-center text-pure-black mb-16">
-          What does Scanything include?
-        </h2>
+    <section id="features" className="py-32 bg-[#F9F9F7] overflow-hidden">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="text-center mb-24">
+          <h2 className="text-5xl md:text-7xl font-heading font-black text-pure-black tracking-tighter">
+            What does Scanything include?
+          </h2>
+        </div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
-          {/* Left Side: Mockup */}
-          <div className="relative w-full max-w-[380px]">
-            <div className="relative z-10 rounded-[3.5rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] bg-white aspect-[9/18.5] transition-all duration-700 border-[1px] border-border-soft ring-1 ring-black/5">
-              {activeFeature.type === "built-ui" ? (
-                <div className="flex flex-col h-full bg-white animate-in fade-in duration-700">
-                  <div className="h-[45%] overflow-hidden relative">
-                    <img 
-                      src={activeFeature.image} 
-                      alt="Product" 
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                        <div className="w-4/5 h-[1px] bg-primary/80 shadow-[0_0_10px_#E91E63] animate-[scan_3s_linear_infinite] absolute"></div>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+          {/* Left Side: Mockup UI (Rounded container, no outer frame) */}
+          <div className="w-full lg:w-[45%] flex justify-center">
+            <div className="relative w-[360px] aspect-[9/18.5] transition-all duration-700">
+              <div className="w-full h-full rounded-[3.5rem] overflow-hidden relative shadow-floating bg-white">
+                {/* Background Image */}
+                <img 
+                  src={inclusions[activeStep].image} 
+                  className={`w-full h-full object-cover transition-all duration-700 ${inclusions[activeStep].isScanning ? 'brightness-90 opacity-95' : 'brightness-105'}`} 
+                  alt={inclusions[activeStep].title} 
+                />
+                
+                {/* Interface Overlay - Only for the first scanning feature */}
+                {inclusions[activeStep].isScanning && (
+                  <div className="absolute inset-0 flex flex-col z-20 pointer-events-none">
+                    {/* Status Bar */}
+                    <div className="pt-10 px-8 flex justify-between items-center text-white">
+                      <span className="text-xs font-bold">9:41</span>
+                      <div className="flex gap-1.5 items-center">
+                        <div className="w-4 h-2.5 bg-white/20 rounded-sm"></div>
+                        <div className="w-5 h-2.5 bg-white rounded-sm"></div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4 px-8 flex justify-between items-center text-white">
+                      <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/10">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"/></svg>
+                      </div>
+                      <span className="text-[13px] font-black tracking-tight">Scanner</span>
+                      <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center border border-white/10">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5"/><circle cx="6" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/></svg>
+                      </div>
+                    </div>
+
+                    {/* Scanning Brackets & PINK Laser */}
+                    <div className="flex-1 flex items-center justify-center relative px-10">
+                      <div className="relative w-full aspect-square max-w-[240px]">
+                        <div className="absolute top-0 left-0 w-10 h-10 border-t-[3.5px] border-l-[3.5px] border-white rounded-tl-2xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+                        <div className="absolute top-0 right-0 w-10 h-10 border-t-[3.5px] border-r-[3.5px] border-white rounded-tr-2xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+                        <div className="absolute bottom-0 left-0 w-10 h-10 border-b-[3.5px] border-l-[3.5px] border-white rounded-bl-2xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+                        <div className="absolute bottom-0 right-0 w-10 h-10 border-b-[3.5px] border-r-[3.5px] border-white rounded-br-2xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
+                        
+                        {/* Pink Scanning Laser Line */}
+                        <div className="absolute left-0 right-0 h-[3px] bg-primary shadow-[0_0_20px_4px_#E91E63] animate-scan-laser-full z-20"></div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Controls (Scan Bar Removed as requested) */}
+                    <div className="p-6 space-y-8 pb-10">
+                      <div className="flex justify-between items-center px-4">
+                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/10 backdrop-blur-xl">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div className="w-20 h-20 rounded-full border-[5px] border-white/30 flex items-center justify-center p-1.5">
+                           <div className="w-full h-full bg-white rounded-full shadow-inner ring-4 ring-black/5"></div>
+                        </div>
+                        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/10 backdrop-blur-xl">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex-1 p-8 flex flex-col gap-5">
-                    <div className="flex justify-between items-center">
-                      <h4 className="text-2xl font-bold">{activeFeature.mockupData?.title}</h4>
-                      <span className="text-xs text-text-secondary font-medium uppercase tracking-tighter">Processed Food</span>
-                    </div>
-                    
-                    <div className="bg-surface-light p-5 rounded-3xl flex justify-between items-center border border-border-soft">
-                      <div>
-                        <span className="text-[11px] uppercase font-bold text-text-secondary block mb-1">Calories / Srv</span>
-                        <span className="text-3xl font-extrabold text-pure-black">{activeFeature.mockupData?.calories}</span>
-                      </div>
-                      <div className="flex gap-4">
-                        <div className="text-center">
-                          <span className="text-[10px] uppercase font-bold text-text-secondary block mb-1">Prot</span>
-                          <span className="text-sm font-bold">{activeFeature.mockupData?.prot}</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-[10px] uppercase font-bold text-text-secondary block mb-1">Sugar</span>
-                          <span className="text-sm font-bold">7.7g</span>
-                        </div>
-                      </div>
-                    </div>
+                )}
 
-                    <div className="flex flex-col gap-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-bold">Health Score</span>
-                        <span className={`text-sm font-extrabold ${activeFeature.mockupData?.scoreColor}`}>
-                            {activeFeature.mockupData?.score} / 10
-                        </span>
-                      </div>
-                      <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div 
-                            className={`h-full ${activeFeature.mockupData?.scoreBg}`}
-                            style={{ width: `${(Number(activeFeature.mockupData?.score) * 10)}%` }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    <div className="mt-auto flex gap-3">
-                      <button className="flex-1 py-4 bg-white border border-border-soft rounded-2xl text-xs font-bold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors">
-                        Ingredients
-                      </button>
-                      <button className="flex-1 py-4 bg-pure-black text-white rounded-2xl text-xs font-bold hover:opacity-90 transition-opacity">
-                        Log Diet
-                      </button>
-                    </div>
+                {/* Simplified Snippet UI for other features (App snippets) */}
+                {!inclusions[activeStep].isScanning && (
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 z-20 pointer-events-none">
+                     <div className="bg-white/90 backdrop-blur-xl p-6 rounded-[2rem] shadow-floating border border-gray-100 animate-in fade-in slide-in-from-bottom-5 duration-700">
+                        <div className="flex items-center gap-4 mb-4">
+                           <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                           </div>
+                           <p className="font-black text-pure-black tracking-tight">{inclusions[activeStep].title}</p>
+                        </div>
+                        <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                           <div className="h-full bg-primary w-[85%] rounded-full shadow-pink-glow transition-all duration-1000"></div>
+                        </div>
+                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="w-full h-full bg-black animate-in fade-in zoom-in-95 duration-500 overflow-hidden">
-                   <img 
-                    src={activeFeature.image} 
-                    alt={activeFeature.title} 
-                    className="w-full h-full object-cover rounded-[3.5rem]"
-                   />
-                </div>
-              )}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-white/10 backdrop-blur-md rounded-b-2xl z-20"></div>
+                )}
+              </div>
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-primary/5 rounded-full -z-10 blur-3xl opacity-60"></div>
           </div>
 
-          {/* Right Side: Feature Cards */}
-          <div className="flex flex-col gap-6 w-full max-w-[500px]">
-            {features.map((feature, index) => (
-              <button 
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`group p-8 rounded-[2.5rem] border text-left transition-all duration-500 outline-none ${
-                  activeIndex === index 
-                  ? 'bg-white border-border-soft shadow-[0_20px_40px_rgba(0,0,0,0.06)] scale-105' 
-                  : 'bg-transparent border-transparent hover:bg-white hover:border-border-soft hover:shadow-lg opacity-60 hover:opacity-100'
+          {/* Right Side: Features List */}
+          <div className="w-full lg:w-[50%] space-y-6">
+            {inclusions.map((item, index) => (
+              <div 
+                key={index} 
+                onClick={() => setActiveStep(index)}
+                className={`p-8 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${
+                  activeStep === index 
+                    ? 'bg-white border-gray-100 shadow-xl scale-[1.02]' 
+                    : 'bg-transparent border-transparent opacity-50 hover:opacity-100'
                 }`}
               >
-                <div className="flex items-start gap-5">
-                   <div className={`w-3 h-12 rounded-full transition-all duration-500 ${activeIndex === index ? 'bg-primary scale-y-100' : 'bg-gray-200 scale-y-0'}`}></div>
-                   <div>
-                    <h3 className={`text-2xl font-bold mb-3 transition-colors duration-500 ${activeIndex === index ? 'text-pure-black' : 'text-gray-500'}`}>
-                      {feature.title}
-                    </h3>
-                    <p className={`leading-relaxed transition-colors duration-500 ${activeIndex === index ? 'text-text-secondary' : 'text-gray-400'}`}>
-                      {feature.description}
-                    </p>
-                   </div>
-                </div>
-              </button>
+                <h3 className="text-2xl font-black text-pure-black mb-3 tracking-tighter">
+                  {item.title}
+                </h3>
+                <p className="text-text-muted text-lg leading-relaxed font-medium">
+                  {item.description}
+                </p>
+              </div>
             ))}
-            
-            <div className="flex justify-center lg:justify-start gap-3 mt-6 px-12">
-              {features.map((_, i) => (
-                <button 
-                  key={i} 
-                  onClick={() => setActiveIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-500 ${activeIndex === i ? 'bg-primary w-10' : 'bg-gray-200 w-2 hover:bg-gray-300'}`}
-                ></button>
-              ))}
-            </div>
           </div>
+        </div>
+
+        {/* Carousel Dots */}
+        <div className="flex justify-center gap-3 mt-16">
+          {inclusions.map((_, i) => (
+            <button 
+              key={i} 
+              onClick={() => setActiveStep(i)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${activeStep === i ? 'bg-primary w-8' : 'bg-gray-200'}`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -29,7 +29,7 @@ const Terms: React.FC = () => {
 
           <section>
             <h2 className="text-2xl font-bold text-pure-black mb-4">2. AI-Powered Analysis & Accuracy</h2>
-            <p>Scanything utilizes advanced Artificial Intelligence (Gemini AI) to parse ingredient labels. You acknowledge that:</p>
+            <p>Scanything utilizes advanced Artificial Intelligence (Scanything AI) to parse ingredient labels. You acknowledge that:</p>
             <ul className="list-disc pl-6 space-y-3 mt-4">
               <li>AI can occasionally produce "hallucinations" or incorrect interpretations of chemical names.</li>
               <li>Handwriting or damaged labels may significantly decrease analysis accuracy.</li>
