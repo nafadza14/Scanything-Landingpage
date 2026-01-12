@@ -1,0 +1,7 @@
+{
+  "name": "Scanything",
+  "description": "A modern health-tech ingredient scanner that explains safety, risks, and allergens for food and skincare products using AI.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
