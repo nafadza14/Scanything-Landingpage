@@ -52,9 +52,6 @@ const Features: React.FC = () => {
                  <path d="M20 120C20 120 40 80 80 80C120 80 140 160 180 160C220 160 220 120 220 120" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="10 10"/>
                  <path d="M210 110L220 120L210 130" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                </svg>
-               <div className="absolute top-10 left-10 -rotate-12 bg-white px-4 py-2 rounded-xl shadow-premium border border-gray-100">
-                  <p className="font-black text-pure-black text-sm tracking-tighter whitespace-nowrap">We Know Your Body Better Than Anyone.</p>
-               </div>
             </div>
           )}
 
@@ -103,17 +100,10 @@ const Features: React.FC = () => {
                   </div>
                 )}
 
-                {/* Case 2: Analysis UI */}
+                {/* Case 2: Analysis UI (Removed BRAND HIGHLIGHT text overlay) */}
                 {inclusions[activeStep].isAnalyzing && (
                   <div className="absolute inset-0 flex flex-col z-20">
-                    {/* Floating Brand Highlight */}
-                    <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[85%] animate-in fade-in zoom-in duration-1000 delay-500 z-50">
-                       <div className="bg-primary/95 px-6 py-4 rounded-[2rem] shadow-pink-glow border border-white/30 text-center backdrop-blur-md">
-                          <p className="text-white font-black text-base tracking-tight leading-tight uppercase">
-                            We Know Your Body Better Than Anyone.
-                          </p>
-                       </div>
-                    </div>
+                    {/* Brands highlights removed as per request */}
                   </div>
                 )}
 

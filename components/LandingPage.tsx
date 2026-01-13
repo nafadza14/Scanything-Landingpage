@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ScannerDemo from './ScannerDemo.tsx';
 import Features from './Features.tsx';
 import DailyTrackers from './DailyTrackers.tsx';
@@ -8,28 +8,40 @@ interface LandingPageProps {
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
+  const [frontIndex, setFrontIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrontIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="bg-[#F2F4F7] overflow-x-hidden min-h-screen">
       {/* SECTION 1: HERO */}
-      <section id="home" className="relative w-full pt-4 pb-12 md:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full lg:w-[82%] h-[90%] lg:h-[95%] bg-dark-mesh busri-shape shadow-[0_100px_100px_-50px_rgba(0,0,0,0.4)] z-0 transition-all duration-700"></div>
+      <section id="home" className="relative w-full pt-24 pb-16 md:pb-32 lg:pt-40 overflow-hidden">
+        {/* Brand Background Mesh */}
+        <div className="absolute top-0 left-0 w-full lg:w-[85%] h-full bg-dark-mesh busri-shape shadow-[0_100px_100px_-50px_rgba(0,0,0,0.5)] z-0 transition-all duration-700"></div>
         
-        <div className="container mx-auto px-6 md:px-12 relative z-10 min-h-[85vh] flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-            <div className="text-left animate-in fade-in slide-in-from-left-10 duration-1000 pl-4 lg:pl-12">
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+            
+            {/* Left Content Column */}
+            <div className="text-left animate-in fade-in slide-in-from-left-10 duration-1000">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-8 h-[2px] bg-primary"></div>
                 <span className="text-primary font-bold text-sm tracking-wide uppercase">Your body has a language. We speak it.</span>
               </div>
               
-              <h1 className="text-6xl md:text-[82px] font-heading font-black text-white leading-[1.05] mb-10 tracking-tighter">
+              <h1 className="text-5xl md:text-7xl xl:text-[84px] font-heading font-black text-white leading-[1.02] mb-10 tracking-tighter">
                 We Know Your <br/>
                 <span className="text-primary">Body Better</span> <br/>
                 Than Anyone.
               </h1>
               
-              <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-12 max-w-lg font-medium">
-                Stop guessing with your health. Scanything is the only AI that doesn't just read labels. it decodes how ingredients interact with your unique biology. Find the food and skincare that perfectly synchronizes with your body’s specific condition, right now.
+              <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-12 max-w-xl font-medium">
+                Stop guessing with your health. Scanything is the only AI that doesn't just read labels—it decodes how ingredients interact with your unique biology.
               </p>
               
               <div className="flex items-center">
@@ -37,79 +49,80 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   href="https://product-scan-app.vercel.app/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-primary text-white px-12 py-5 rounded-full font-bold transition-all shadow-pink-glow hover:scale-105 hover:bg-pink-600 active:bg-pink-700 active:scale-95 active:shadow-[0_0_40px_rgba(233,30,99,0.9)] group"
+                  className="bg-primary text-white px-10 md:px-14 py-5 rounded-full font-bold transition-all shadow-pink-glow hover:scale-105 hover:bg-pink-600 active:bg-pink-700 active:scale-95 active:shadow-[0_0_40px_rgba(233,30,99,0.9)] group text-center"
                 >
-                   <span className="text-lg">Scan for My Perfect Match</span>
+                   <span className="text-lg md:text-xl">Scan for My Perfect Match</span>
                 </a>
               </div>
             </div>
 
-            <div className="relative h-[650px] lg:h-[900px] flex items-center justify-center">
-               {/* Main Scanner Mockup */}
-               <div className="absolute left-[-2%] lg:left-[-5%] top-[5%] w-[350px] lg:w-[420px] aspect-[10/19] bg-black rounded-[5rem] shadow-floating overflow-hidden z-20 animate-float">
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-8 bg-black rounded-full z-50 flex items-center justify-end px-3 border border-white/5">
-                    <div className="w-2 h-2 rounded-full bg-blue-500/20 shadow-[0_0_4px_rgba(59,130,246,0.5)]"></div>
-                  </div>
+            {/* Right Mockup Column - Overlapping and Alternating */}
+            <div className="relative flex items-center justify-center lg:justify-end h-[550px] md:h-[750px] w-full mt-12 lg:mt-0">
+               <div className="relative w-full h-full max-w-[500px] flex items-center justify-center">
+                 
+                 {/* Image 1: Scanner Mockup (Back/Front Swapper) */}
+                 <div className={`absolute transition-all duration-1000 ease-in-out w-[240px] sm:w-[280px] md:w-[360px] aspect-[10/19] bg-black rounded-[3rem] md:rounded-[5rem] shadow-floating overflow-hidden ${
+                   frontIndex === 0 
+                   ? 'z-30 scale-100 translate-x-[-15%] md:translate-x-[-25%] opacity-100' 
+                   : 'z-10 scale-90 translate-x-[15%] md:translate-x-[25%] opacity-60 grayscale-[30%]'
+                 }`}>
+                    <div className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 w-20 md:w-32 h-6 md:h-8 bg-black rounded-full z-50 flex items-center justify-end px-3 border border-white/5">
+                      <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-blue-500/20 shadow-[0_0_4px_rgba(59,130,246,0.5)]"></div>
+                    </div>
 
-                  <img 
-                    src="https://matahari.com/cdn/shop/files/84341655_5.jpg?v=1742059226&width=720" 
-                    className="absolute inset-0 w-full h-full object-cover brightness-90" 
-                    alt="Scanning Product" 
-                  />
-                  
-                  <div className="absolute inset-0 flex flex-col z-10 pointer-events-none">
-                     <div className="flex-1 flex items-center justify-center px-10 relative">
-                        <div className="relative w-full aspect-square max-w-[280px]">
-                           <div className="absolute top-0 left-0 w-12 h-12 border-t-[3.5px] border-l-[3.5px] border-white rounded-tl-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
-                           <div className="absolute top-0 right-0 w-12 h-12 border-t-[3.5px] border-r-[3.5px] border-white rounded-tr-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
-                           <div className="absolute bottom-0 left-0 w-12 h-12 border-b-[3.5px] border-l-[3.5px] border-white rounded-bl-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
-                           <div className="absolute bottom-0 right-0 w-12 h-12 border-b-[3.5px] border-r-[3.5px] border-white rounded-br-3xl shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
-                           <div className="absolute left-0 right-0 h-[3px] bg-white shadow-[0_0_20px_4px_rgba(255,255,255,0.8)] animate-scan-laser-full z-20"></div>
-                        </div>
-                     </div>
+                    <img 
+                      src="https://matahari.com/cdn/shop/files/84341655_5.jpg?v=1742059226&width=720" 
+                      className="absolute inset-0 w-full h-full object-cover brightness-90" 
+                      alt="Scanning Product" 
+                    />
+                    
+                    <div className="absolute inset-0 flex flex-col z-10 pointer-events-none">
+                       <div className="flex-1 flex items-center justify-center px-6 relative">
+                          <div className="relative w-full aspect-square max-w-[160px] md:max-w-[240px]">
+                             <div className="absolute top-0 left-0 w-8 md:w-12 h-8 md:h-12 border-t-[3px] border-l-[3px] border-white rounded-tl-2xl shadow-white-glow"></div>
+                             <div className="absolute top-0 right-0 w-8 md:w-12 h-8 md:h-12 border-t-[3px] border-r-[3px] border-white rounded-tr-2xl shadow-white-glow"></div>
+                             <div className="absolute bottom-0 left-0 w-8 md:w-12 h-8 md:h-12 border-b-[3px] border-l-[3px] border-white rounded-bl-2xl shadow-white-glow"></div>
+                             <div className="absolute bottom-0 right-0 w-8 md:w-12 h-8 md:h-12 border-b-[3px] border-r-[3px] border-white rounded-br-2xl shadow-white-glow"></div>
+                             <div className="absolute left-0 right-0 h-[2px] md:h-[3px] bg-white shadow-[0_0_20px_4px_rgba(255,255,255,0.8)] animate-scan-laser-full z-20"></div>
+                          </div>
+                       </div>
+                       <div className="p-4 md:p-6 pb-12 md:pb-20">
+                          <div className="flex justify-between items-center px-4">
+                             <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white">
+                                <svg className="w-5 h-5 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                             </div>
+                             <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border-[3px] md:border-[5px] border-white/30 flex items-center justify-center">
+                                <div className="w-full h-full bg-white rounded-full m-1"></div>
+                             </div>
+                             <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white">
+                                <svg className="w-5 h-5 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
 
-                     <div className="p-6 space-y-8 pb-16">
-                        <div className="flex justify-between items-center px-4">
-                           <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white">
-                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                           </div>
-                           <div className="w-24 h-24 rounded-full border-[5px] border-white/30 flex items-center justify-center p-1.5">
-                              <div className="w-full h-full bg-white rounded-full shadow-inner ring-4 ring-black/5"></div>
-                           </div>
-                           <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white">
-                              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                 {/* Image 2: Analysis Results Mockup (Back/Front Swapper) */}
+                 <div className={`absolute transition-all duration-1000 ease-in-out w-[240px] sm:w-[280px] md:w-[360px] aspect-[10/19] bg-white rounded-[3rem] md:rounded-[5rem] shadow-pink-glow overflow-hidden border-none ${
+                   frontIndex === 1 
+                   ? 'z-30 scale-100 translate-x-[-15%] md:translate-x-[-25%] opacity-100' 
+                   : 'z-10 scale-90 translate-x-[15%] md:translate-x-[25%] opacity-60 grayscale-[30%]'
+                 }`}>
+                    <img 
+                      src="https://i.pinimg.com/736x/9b/5a/55/9b5a557a7925d175f7f994c16a254191.jpg" 
+                      className="w-full h-full object-cover" 
+                      alt="Detailed Analysis View" 
+                    />
+                    <div className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 w-16 md:w-24 h-4 md:h-6 bg-black/10 backdrop-blur-md rounded-full z-20 border border-white/10"></div>
+                 </div>
 
-               {/* Secondary Supporting Mockup - High Quality Rounded Full Screenshot */}
-               <div className="absolute right-[-8%] lg:right-[-15%] top-[30%] w-[310px] lg:w-[360px] aspect-[10/19] bg-white rounded-[5rem] shadow-pink-glow overflow-hidden z-10 animate-float-delayed border-none">
-                  <img 
-                    src="https://i.pinimg.com/736x/9b/5a/55/9b5a557a7925d175f7f994c16a254191.jpg" 
-                    className="w-full h-full object-cover" 
-                    alt="Body Knowledge Analysis Full Screen" 
-                  />
-                  
-                  {/* BRAND HIGHLIGHT OVERLAY */}
-                  <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[85%] z-30 animate-in fade-in zoom-in duration-1000 delay-700">
-                     <div className="bg-primary/95 backdrop-blur-md px-5 py-4 rounded-3xl shadow-xl border border-white/30 text-center transform -rotate-2">
-                        <p className="text-white font-black text-[13px] leading-tight tracking-tight uppercase">
-                          We Know Your Body Better Than Anyone.
-                        </p>
-                     </div>
-                  </div>
-
-                  {/* Subtle Phone Header */}
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-6 bg-black/10 backdrop-blur-md rounded-full z-20 border border-white/10"></div>
                </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* REST OF THE SECTIONS */}
+      {/* HOW IT WORKS */}
       <section id="how" className="py-32 bg-white">
         <div className="container mx-auto px-10 md:px-24">
           <div className="text-center max-w-3xl mx-auto mb-24">
